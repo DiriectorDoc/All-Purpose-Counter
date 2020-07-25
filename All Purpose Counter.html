@@ -1,0 +1,216 @@
+<!DOCTYPE html PUBLIC>
+<!--PLEASE DO NOT LOOK AT THE SOURCE CODE-->
+<!--PLEASE DO NOT LOOK AT THE SOURCE CODE-->
+<!--PLEASE DO NOT LOOK AT THE SOURCE CODE-->
+<!--PLEASE DO NOT LOOK AT THE SOURCE CODE-->
+<!--PLEASE DO NOT LOOK AT THE SOURCE CODE-->
+<!--PLEASE DO NOT LOOK AT THE SOURCE CODE-->
+<!--PLEASE DO NOT LOOK AT THE SOURCE CODE-->
+<!--PLEASE DO NOT LOOK AT THE SOURCE CODE-->
+<!--PLEASE DO NOT LOOK AT THE SOURCE CODE-->
+<!--PLEASE DO NOT LOOK AT THE SOURCE CODE-->
+<!--PLEASE DO NOT LOOK AT THE SOURCE CODE-->
+<!--PLEASE DO NOT LOOK AT THE SOURCE CODE-->
+<!--PLEASE DO NOT LOOK AT THE SOURCE CODE-->
+<!--PLEASE DO NOT LOOK AT THE SOURCE CODE-->
+<!--PLEASE DO NOT LOOK AT THE SOURCE CODE-->
+<!--PLEASE DO NOT LOOK AT THE SOURCE CODE-->
+<!--PLEASE DO NOT LOOK AT THE SOURCE CODE-->
+<!--PLEASE DO NOT LOOK AT THE SOURCE CODE-->
+<!--PLEASE DO NOT LOOK AT THE SOURCE CODE-->
+<!--PLEASE DO NOT LOOK AT THE SOURCE CODE-->
+<!--PLEASE DO NOT LOOK AT THE SOURCE CODE-->
+<!--PLEASE DO NOT LOOK AT THE SOURCE CODE-->
+<!--PLEASE DO NOT LOOK AT THE SOURCE CODE-->
+<!--PLEASE DO NOT LOOK AT THE SOURCE CODE-->
+<!--PLEASE DO NOT LOOK AT THE SOURCE CODE-->
+<!--PLEASE DO NOT LOOK AT THE SOURCE CODE-->
+<!--PLEASE DO NOT LOOK AT THE SOURCE CODE-->
+<!--PLEASE DO NOT LOOK AT THE SOURCE CODE-->
+<!--PLEASE DO NOT LOOK AT THE SOURCE CODE-->
+<!--PLEASE DO NOT LOOK AT THE SOURCE CODE-->
+<!--PLEASE DO NOT LOOK AT THE SOURCE CODE-->
+<!--PLEASE DO NOT LOOK AT THE SOURCE CODE-->
+<!--PLEASE DO NOT LOOK AT THE SOURCE CODE-->
+<html lang="en">
+    <head>
+        <title>
+			All Purpose Counter
+        </title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=0">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<!--<LINK href="Main.css" rel="stylesheet" type="text/css">-->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+        </script>
+        <script src="http://randomcounternet.000webhostapp.com/NoSleep.js">
+        </script>
+        <script>
+            i = 0;
+            w = window;
+            d = document;
+            e = d.documentElement;
+            g = d.getElementsByTagName('body')[0];
+            x = w.innerWidth || e.clientWidth || g.clientWidth;
+            y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+            preX = x;
+            preY = y;
+            if(y > x){
+                fontSize = x
+            }
+            else{
+                fontSize = y
+            }
+            fontDiv = 1;
+            fontSub = 60;
+            cssTop = 0-0.5*(fontSize+fontSize*(1/fontSize)-fontSize/2)-40
+            if(cssTop < fontSize*0.33333333333333333333333){
+                cssTop += fontSize*0.1;
+            }
+            $(document).ready(function(){
+                $("DIV").css("top", cssTop + "px");
+                $("DIV").css("height", y-cssTop + "px");
+                $("BODY").keypress(function(){
+                    //add to the counter
+                    i += 1;
+                    //adjusts the text sise if the screen size has changed
+                    if(preX != x || preY != y){
+                        x = w.innerWidth || e.clientWidth || g.clientWidth;
+                        y = w.innerHeight|| e.clientHeight|| g.clientHeight; 
+                        if(y > x){
+                            fontSize = x
+                        }
+                        else{
+                            fontSize = y
+                        }
+                        cssTop -= 50
+                    }
+                    //adjusts font adjustments when text reaches edge of screen
+                    if(i > 99999){
+                        fontDiv = Math.pow(6, .5);
+                    }
+                    else if(i > 9999){
+                        fontDiv = Math.pow(5, .5);
+                    }
+                    else if(i > 999){
+                        fontDiv = 2;
+                    }
+                    else if(i > 99){
+                        fontDiv = Math.pow(3, .5);
+                    }
+                    else if(i > 9){
+                        fontDiv = Math.pow(2, .5);
+                    }
+                    //prevents DIV from moving down on slight resize
+                    if(fontSize*fontDiv-fontSub > x){
+                        fontSize /= Math.pow(fontDiv, .5);
+                        cssTop += 50;
+                    }
+                    $("DIV").css("top", cssTop + "px");
+                    $("DIV").css("font-size", (fontSize-fontSub) + "px");
+                    $("DIV").text(i);
+                    //resets the givven screen size
+                    preX = x;
+                    preY = y;
+                    x = w.innerWidth || e.clientWidth || g.clientWidth;
+                    y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+                });
+                //does EVERYTHING the keypress function does
+                $("DIV").click(function(){
+                    //add to the counter
+                    i += 1;
+                    //adjusts the text sise if the screen size has changed
+                    if(preX != x || preY != y){
+                        x = w.innerWidth || e.clientWidth || g.clientWidth;
+                        y = w.innerHeight|| e.clientHeight|| g.clientHeight; 
+                        if(y > x){
+                            fontSize = x
+                        }
+                        else{
+                            fontSize = y
+                        }
+                        cssTop -= 50
+                    }
+                    //adjusts font adjustments when text reaches edge of screen
+                    if(i > 99999){
+                        fontDiv = Math.pow(6, .5);
+                    }
+                    else if(i > 9999){
+                        fontDiv = Math.pow(5, .5);
+                    }
+                    else if(i > 999){
+                        fontDiv = 2;
+                    }
+                    else if(i > 99){
+                        fontDiv = Math.pow(3, .5);
+                    }
+                    else if(i > 9){
+                        fontDiv = Math.pow(2, .5);
+                    }
+                    //prevents DIV from moving down on slight resize
+                    if(fontSize*fontDiv-fontSub > x){
+                        fontSize /= Math.pow(fontDiv, .5);
+                        cssTop += 50;
+                    }
+                    $("DIV").css("top", cssTop + "px");
+                    $("DIV").css("font-size", (fontSize-fontSub) + "px");
+                    $("DIV").text(i);
+                    //resets the givven screen size
+                    preX = x;
+                    preY = y;
+                    x = w.innerWidth || e.clientWidth || g.clientWidth;
+                    y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+                });
+            });
+        </script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js">
+        </script>
+        <style type="text/css">
+            HTML{
+                overflow: hidden;
+            }
+            .num{
+                text-align: center;
+                color: #000000;
+                cursor: pointer;
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                vertical-align: top;
+                position: relative;
+            }
+            .underline{
+                color: #000000;
+                text-decoration: underline;
+                text-decoration-color: #000000;
+                cursor: default;
+                
+            }
+            P{
+                color: #000000;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+        </script>
+        <p>
+            Adjusting the screen orientation could mess up the graphics, refreshing will
+            <a class="underline">
+            NOT</a>
+            save your number!
+        </p>
+        <p>
+            Click, Tap, or hit a key to start counting!
+        </p>
+        <br>
+        <div class="container-fluid num" align="center" unselectable="on" onselectstart="return false;" onmousedown="return false;">
+            0
+        </div>
+    </body>
+</html>
