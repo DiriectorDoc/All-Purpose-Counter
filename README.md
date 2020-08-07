@@ -6,4 +6,4 @@ Click or press a button. Number goes up. Yay. The more you click, the mroe it go
 
 Number is always fit to screen. Even when screen is resized.
 
-Be sure to save your number somewhere. This project does ot use cookies I'm pretty sure.
+Be sure to save your number somewhere. This project does not use cookies I'm pretty sure.
