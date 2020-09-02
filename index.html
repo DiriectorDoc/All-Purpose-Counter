@@ -7,7 +7,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE-edge">
 		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=0">
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript">
+		<script src="https://code.jquery.com/jquery-1.12.4.js" type="text/javascript">
 		</script>
 		<script src="NoSleep.min.js" type="text/javascript">
 		</script>
@@ -52,12 +52,12 @@
 						== Math ==
 						To calculate the size the font should be, I take 90% of the viewport
 						width and divide it by the number of digits, or 9/10*vw/trunc(log_10(x)+1)
-						This gives me the width that each digit shoulb be. I then multiply
+						This gives me the width that each digit should be. I then multiply
 						this number by the ratio of the font's height:width, which is 253:126
 						ie. (9/10*vw/trunc(log_10(x)+1))*(253/126)
-						Plug this into wolframalpha, and it simplifies to 253*vw/(140*trunc(log10(x)+1))
+						Plug this into WolframAlpha, and it simplifies to 253*vw/(140*trunc(log_10(x)+1))
 					*/
-					$("#num").css("fontSize", 253*vw/(140*Math.trunc(Math.log10(i)+1)))
+					$("#num").css("fontSize", 253*vw/(140*(~~Math.log10(i)+1)))
 				}
 			}
 
@@ -123,12 +123,12 @@
 		</script>
 		<div id="message">
 			<p>
-				Adjusting the screen orientation could mess up the graphics, refreshing will <u>NOT</u> save your number!
+				Adjusting the screen orientation could mess up the graphics; refreshing will <u>NOT</u> save your number!
 			</p>
 			<p>
 				Click, Tap, or hit a key to start counting!
 			</p>
-			<span id="version-info">v1.0 &mdash; D-Doc, 2020</span>
+			<span id="version-info">v1.0.1 &mdash; D-Doc, 2020</span>
 		</div>
 		<div id="num">
 			0
