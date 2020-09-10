@@ -11,28 +11,70 @@
 		</script>
 		<script src="NoSleep.min.js" type="text/javascript">
 		</script>
+		<script src="https://raw.githubusercontent.com/DiriectorDoc/jQlipboard/master/JQlipboard.min.js" type="text/javascript">
+		</script>
 		<script type="text/javascript">
 			let i = 0,
 				noSleep = new NoSleep(),
 				vw = $(window).width(),
-				vh = $(window).height();
+				vh = $(window).height(),
+				timer = 5,
+				hudTimer = setInterval(function(){
+					if(timer++ == 4){
+						$("#info").slideDown()
+					}
+				}, 1000);
 
-			function increment(){
+			function increment(event){
+				if(event.shiftKey){
+					switch(event.keyCode){
+						case 67:
+						case 99:
+							copy()
+							return;
+						case 88:
+						case 120:
+							$("#info").slideUp()
+							clearInterval(hudTimer)
+							increment = function(event){
+								if(event.shiftKey && (event.keyCode == 67 || event.keyCode == 99)){
+									copy()
+									return
+								}
+								$("#num").html(++i)
+								resize()
+							}
+							return
+					}
+				}
+				timer = 0;
+				$("#info").hide()
 				$("#num").html(++i)
 				resize()
 			}
 
-			function begin(){
-				increment()
-				$("#message").hide()
+			function copy(){
+				$.copy(i)
+				$("#coppied").slideDown()
+				setTimeout(function(){
+					$("#coppied").slideUp()
+				}, 3000)
+			}
+
+			function begin(event){
+				increment(event)
+				$("#startup").hide()
 				$("#num")
 					.show(0)
 					.off("click")
 					.click(increment)
 				$(document)
 					.off("keypress")
+					.off("click")
 					.keypress(increment)
-				
+
+				noSleep.enable()
+
 				let viewportListener = setInterval(function(){
 					if(vw != $(window).width() || vh != $(window).height()){
 						vw = $(window).width(),
@@ -63,13 +105,20 @@
 
 
 			$(document).ready(function(){
+				if([/Android/i, /webOS/i, /iPhone/i, /iPad/i, /iPod/i, /BlackBerry/i, /PlayBook/i, /Windows Phone/i].some(item => navigator.userAgent.match(item))){
+					$("#hud").remove()
+					clearInterval(hudTimer)
+					increment = function(){
+						$("#num").html(++i)
+						resize()
+					}
+				} else {
+					$("#info").hide()
+					$("#coppied").hide()
+				}
 				$(this)
 					.keypress(begin)
-					.click(function(){
-						begin()
-						noSleep.enable()
-						$(this).off("click")
-					})
+					.click(begin)
 
 				$("#num")
 					.css({
@@ -90,11 +139,32 @@
 			p {
 				text-align: center;
 			}
-			#message {
-				height: 100%;
+			.message {
+				position: relative;
+				left: -50%;
+				padding: .5em;
+				border-radius: .5em;
+				background: #999;
+				text-align: center;
+			}
+			.noselect {
+				-webkit-touch-callout: none;
+				-webkit-user-select: none;
+				-khtml-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+			}
+			#coppied {
 				position: absolute;
-				top: 0;
-				width: 100%;
+			}
+			#hud {
+				position: absolute;
+				top: 1em;
+				left:50%;
+			}
+			#info {
+				margin-bottom: 1em;
 			}
 			#num {
 				color: #000;
@@ -102,12 +172,12 @@
 				font-size: 90vh;
 				height: 100%;
 				text-align: center;
-				-webkit-touch-callout: none;
-				-webkit-user-select: none;
-				-khtml-user-select: none;
-				-moz-user-select: none;
-				-ms-user-select: none;
-				user-select: none;
+				width: 100%;
+			}
+			#startup {
+				height: 100%;
+				position: absolute;
+				top: 0;
 				width: 100%;
 			}
 			#version-info {
@@ -121,17 +191,28 @@
 	<body>
 		<script type="text/javascript">
 		</script>
-		<div id="message">
+		<div id="startup">
 			<p>
-				Adjusting the screen orientation could mess up the graphics; refreshing will <u>NOT</u> save your number!
+				Exiting or refreshing will <u>NOT</u> save your number!
 			</p>
 			<p>
-				Click, Tap, or hit a key to start counting!
+				Click, Tap, or hit a key to start counting.
 			</p>
-			<span id="version-info">v1.0.1 &mdash; D-Doc, 2020</span>
+			<span id="version-info">v1.1.0 &mdash; D-Doc, 2020</span>
 		</div>
-		<div id="num">
+		<div id="num" class="noselect">
 			0
+		</div>
+		<div id="hud" class="noselect">
+			<div id="info" class="message">
+				Press <b>Shift + C</b> to copy your number.<br/>
+				Press <b>Shift + X</b> to never show this again.
+			</div>
+			<div id="coppied">
+				<div class="message">
+					Coppied!
+				</div>
+			</div>
 		</div>
 	</body>
 </html>
