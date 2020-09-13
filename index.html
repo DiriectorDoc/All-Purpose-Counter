@@ -19,11 +19,7 @@
 				vw = $(window).width(),
 				vh = $(window).height(),
 				timer = 5,
-				hudTimer = setInterval(function(){
-					if(timer++ == 4){
-						$("#info").slideDown()
-					}
-				}, 1000);
+				hudTimer;
 
 			function increment(event){
 				if(event.shiftKey){
@@ -107,7 +103,6 @@
 			$(document).ready(function(){
 				if([/Android/i, /webOS/i, /iPhone/i, /iPad/i, /iPod/i, /BlackBerry/i, /PlayBook/i, /Windows Phone/i].some(item => navigator.userAgent.match(item))){
 					$("#hud").remove()
-					clearInterval(hudTimer)
 					increment = function(){
 						$("#num").html(++i)
 						resize()
@@ -115,6 +110,11 @@
 				} else {
 					$("#info").hide()
 					$("#coppied").hide()
+					hudTimer = setInterval(function(){
+						if(timer++ == 4){
+							$("#info").slideDown()
+						}
+					}, 1000)
 				}
 				$(this)
 					.keypress(begin)
